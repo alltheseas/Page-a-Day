@@ -42,9 +42,13 @@ III) As an author utilizing Page-a-Day, I would like to see stats of the most za
   _Acceptance Criteria_
   1. There is a way for anyone to view the most zapped pages. For instance, this could be a histogram view sorted from most to least zapped pages (see zaplife.lol most zapped notes, and most frequently zapped notes methoodologies)
 
-IV) As a book author who wants to control how my book appears, I would like to the pages to appear in long-form like habla.news posts, so that the reader is immersed in the reading experience.
+
+_future_
+Most nostr users do not use long form posts. Therefore Page-a-Day will start publishing pages as regular notes on day one.
+
+> IV) As a book author who wants to control how my book appears, I would like to the pages to appear in long-form like habla.news posts, so that the reader is immersed in the reading experience.
   
-  _Acceptance Criteria_
-  1. Book page(s) notes have long-form nostr/NIP marker, and render on nostr long-form readers such as habla.news
+>  _Acceptance Criteria_
+>  1. Book page(s) notes have long-form nostr/NIP marker, and render on nostr long-form readers such as habla.news
 
 Origin: https://iris.to/note14u3fkqu8dafzl45zwud4mua7u2w3emtaml4f78k5qc0myxhyc9zqd24ste
