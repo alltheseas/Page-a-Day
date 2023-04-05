@@ -10,8 +10,13 @@ Enter Page-a-Day!
 
 Page-a-Day is a nostr bot that publishes a daily note with one page (or more pages) from a book. This note is zappable by readers. Zaps go directly to book author via NIP-57 zap markers approach. The author can elect to split a portion of zaps with the dev maintainer of the bot.
 
+## How does Page-a-Day provide value, and to whom?
+1) Author can reach new readers, and readers can discover a new author
+2) Authors and readers, or readers and readers can now interact closer to real time when reading pages of a book
+3) Saifedean mentioned that we he uploaded the PDF copy of his seminal book The Bitcoin Standard to free book websites book sales went up. Page-a-Day hypothesis is that author book sales will increase if nostr is used as a new demand generation channel!
+
 ## Page-a-Day needs a dev!
-As a product person I can provide user stories, product specs, and mock-ups. Page-a-day requires a dev to build!
+As a product person I can provide user stories, product specs, and mock-ups. Page-a-day requires a dev to build! Ping me on nostr npub1zafcms4xya5ap9zr7xxr0jlrtrattwlesytn2s42030lzu0dwlzqpd26k5.
 
 ### User Stories
 I) As a book author who is looking for additional distribution for my book, I would like a way to automagically publish zappable book pages to nostr daily, so that I can reach new book purchasers, and provide an opportunity to receive zaps from interested readers.
