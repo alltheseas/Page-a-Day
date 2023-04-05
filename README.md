@@ -14,6 +14,7 @@ Page-a-Day is a nostr bot that publishes a daily note with one page (or more pag
 1) Author can reach new readers, and readers can discover a new author
 2) Authors and readers, or readers and readers can now interact closer to real time when reading pages of a book
 3) Saifedean mentioned that we he uploaded the PDF copy of his seminal book The Bitcoin Standard to free book websites book sales went up. Page-a-Day hypothesis is that author book sales will increase if nostr is used as a new demand generation channel!
+4) Readers can zap, and send sats to the author as often as they read notes containing pages from the author's book!
 
 ## Page-a-Day needs a dev!
 As a product person I can provide user stories, product specs, and mock-ups. Page-a-day requires a dev to build! Ping me on nostr npub1zafcms4xya5ap9zr7xxr0jlrtrattwlesytn2s42030lzu0dwlzqpd26k5.
