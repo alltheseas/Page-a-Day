@@ -6,9 +6,14 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "server": "node index.js"
   },
   "devDependencies": {
     "nuxt": "^3.3.3"
+  },
+  "dependencies": {
+    "@nostr-dev-kit/ndk": "^0.0.23",
+    "express": "^4.18.2"
   }
 }
