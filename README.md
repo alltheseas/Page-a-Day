@@ -1,3 +1,10 @@
+Index
+- [Page-a-Day](#page-a-day)
+- [Overview](#overview)
+- [How does Page-a-Day provide value, and to whom?](#how-does-page-a-day-provide-value-and-to-whom)
+- [Page-a-Day needs a dev!](#page-a-day-needs-a-dev)
+- [Getting started](#getting-started)
+
 # Page-a-Day
 Automated daily publication of book page(s) on [nostr]([url](https://github.com/nostr-protocol/nostr)). Zappable by readers. Zaps go to book author. FOSS.
 
@@ -52,3 +59,10 @@ Most nostr users do not use long form posts. Therefore Page-a-Day will start pub
 >  1. Book page(s) notes have long-form nostr/NIP marker, and render on nostr long-form readers such as habla.news
 
 Origin: https://iris.to/note14u3fkqu8dafzl45zwud4mua7u2w3emtaml4f78k5qc0myxhyc9zqd24ste
+
+## Getting started
+Clone the repository, open the Page-a-Day folder in your favorite IDE and run
+```bash
+yarn install (or npm install)
+yarn dev (or npm run dev)
+```
