@@ -13,7 +13,8 @@
     "nuxt": "^3.3.3"
   },
   "dependencies": {
+    "@gxl/epub-parser": "^2.0.4",
     "@nostr-dev-kit/ndk": "^0.0.23",
-    "express": "^4.18.2"
+    "turndown": "^7.1.2"
   }
 }
