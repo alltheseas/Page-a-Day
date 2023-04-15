@@ -11,14 +11,13 @@ const signer = ref();
 onMounted(() => {
   signer.value = new NDKNip07Signer();
   const ndk = new NDK({ signer: signer.value });
-})
-
-function loginWithExtension() {
-  signer.value.user().then(async (user) => {
-    if (!!user.npub) {
-        useState('npub', () => user.npub)
-        navigateTo('/home');
-    }
 });
+
+async function loginWithExtension() {
+  const user = await signer.value.user();
+  if (!!user.npub) {
+    useState("npub", () => user.npub);
+    navigateTo("/home");
+  }
 }
 </script>
