@@ -11,6 +11,10 @@
 </template>
 
 <script setup lang="ts">
-const npub = useState("npub");
+const npub = ref();
 const books = ref();
+
+onMounted(() => {
+  npub.value = localStorage.getItem("npub");
+});
 </script>
