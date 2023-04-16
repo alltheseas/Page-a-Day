@@ -13,9 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import NDK, { NDKNip07Signer, NDKEvent } from "@nostr-dev-kit/ndk";
+import { NDKEvent } from "@nostr-dev-kit/ndk";
 import TurndownService from "turndown";
 import { Epub } from "@gxl/epub-parser/lib/parseEpub";
+const { $ndk } = useNuxtApp();
 
 interface Book {
   title: string;
@@ -28,12 +29,9 @@ interface Book {
 const book: Ref<Book> = ref({ title: "", content: [] });
 const sections = ref();
 const turndownService = ref();
-const ndk = ref();
 
 onMounted(() => {
   turndownService.value = new TurndownService();
-  const nip07signer = new NDKNip07Signer();
-  ndk.value = new NDK({ signer: nip07signer });
 });
 
 async function changeFile(event: Event) {
@@ -66,7 +64,7 @@ function matchChapterAndText(chapter) {
 }
 
 async function signNote() {
-  const ndkEvent = new NDKEvent(ndk.value);
+  const ndkEvent = new NDKEvent($ndk);
   ndkEvent.kind = 1;
   ndkEvent.content = "Hello, world!";
   console.log(ndkEvent);
