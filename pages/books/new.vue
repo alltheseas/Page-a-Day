@@ -5,7 +5,7 @@
     <li v-for="chapter in book.content">
       <details>
         <summary>{{ chapter.title }}<button @click="signNote">Sign</button></summary>
-        <p style="white-space: pre-wrap">{{ turndownService.turndown(chapter.text) }}</p>
+        <p style="white-space: pre-wrap">{{ chapter.text }}</p>
       </details>
       <ul></ul>
     </li>
@@ -16,18 +16,33 @@
 import { NDKEvent } from "@nostr-dev-kit/ndk";
 import TurndownService from "turndown";
 import { Epub } from "@gxl/epub-parser/lib/parseEpub";
+import { Section } from "@gxl/epub-parser/lib/parseSection";
 const { $ndk } = useNuxtApp();
 
 interface Book {
   title: string;
   content: Array<{
     title: string;
-    text: string;
+    text: HTMLBodyElement | null;
   }>;
 }
 
+interface Chapter extends ChapterStructure {
+  children: Array<ChapterStructure>;
+}
+
+interface ChapterStructure {
+  name: string;
+  nodeId: string;
+  path: string;
+  playOrder: string;
+}
+
 const book: Ref<Book> = ref({ title: "", content: [] });
-const sections = ref();
+const bookStructure = ref({
+  sections: [] as Section[] | undefined,
+  manifest: [] as Array<{ href: string; id: string; "media-type": string }>,
+});
 const turndownService = ref();
 
 onMounted(() => {
@@ -41,30 +56,37 @@ async function changeFile(event: Event) {
   reader.readAsBinaryString(inputFile);
   await new Promise<void>((resolve) => (reader.onload = () => resolve()));
   const binary = reader.result;
-  const response = await $fetch("/api/parse", {
+  const response: Epub = await $fetch("/api/parse", {
     method: "POST",
     body: JSON.stringify({
       input: binary,
     }),
   });
-  console.log(response);
+  console.log("RESPONSE", response);
   book.value.title = response.info!.title;
   book.value.content = [];
-  sections.value = response.sections;
-  JSON.parse(JSON.stringify(response.structure)).map((chapter) =>
-    matchChapterAndText(chapter)
-  );
+  bookStructure.value.sections = response.sections;
+  bookStructure.value.manifest = response._manifest;
+  response.structure?.map((chapter: Chapter) => matchChapterAndText(chapter));
 }
 
-function matchChapterAndText(chapter) {
+function matchChapterAndText(chapter: Chapter) {
   const title = chapter.name;
-  const text =
-    sections.value.find((section) => chapter.path.includes(section.id))?.htmlString || "";
+  const id = bookStructure.value.manifest.find((entry) =>
+    chapter.path.includes(entry.href)
+  )?.id;
+  const xmlText =
+    bookStructure.value.sections?.find((section) => section.id === id)?.htmlString || "";
+  // const node = document.createRange().createContextualFragment(xmlText);
+  const node = new DOMParser().parseFromString(xmlText, "application/xhtml+xml");
+  const body = node.querySelector("body");
+  const text = turndownService.value.turndown(body);
   book.value!.content.push({ title, text });
 }
 
 async function signNote() {
   const ndkEvent = new NDKEvent($ndk);
+  console.log($ndk);
   ndkEvent.kind = 1;
   ndkEvent.content = "Hello, world!";
   console.log(ndkEvent);
