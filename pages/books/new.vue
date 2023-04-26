@@ -80,6 +80,12 @@ function matchChapterAndText(chapter: Chapter) {
   // const node = document.createRange().createContextualFragment(xmlText);
   const node = new DOMParser().parseFromString(xmlText, "application/xhtml+xml");
   const body = node.querySelector("body");
+  turndownService.value.addRule("enters", {
+    filter: ["div"],
+    replacement: function (content: string) {
+      return content + "\n\n";
+    },
+  });
   const text = turndownService.value.turndown(body);
   book.value!.content.push({ title, text });
 }
